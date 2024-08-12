@@ -187,7 +187,8 @@ main(int argc, char *argv[])
         return 1;
     }
 
-    NSString *tempPath = [[tempURL path] stringByAppendingPathComponent:@"Payload"];
+    // NSString *tempPath = [[tempURL path] stringByAppendingPathComponent:@"Payload"];
+    NSString *tempPath = [[[NSFileManager defaultManager] currentDirectoryPath] stringByAppendingPathComponent:@"Payload"];
     BOOL didCopy = [[NSFileManager defaultManager] copyItemAtPath:targetPath toPath:tempPath error:&error];
     if (!didCopy)
     {
@@ -238,15 +239,15 @@ main(int argc, char *argv[])
 
 
     /* zip: archive */
-    NSString *archiveName =
-        [NSString stringWithFormat:@"%@_%@_dumped.ipa", [appProxy localizedName], [appProxy shortVersionString]];
-    NSString *archivePath =
-        [[[NSFileManager defaultManager] currentDirectoryPath] stringByAppendingPathComponent:archiveName];
-    BOOL didClean = [[NSFileManager defaultManager] removeItemAtPath:archivePath error:nil];
+    // NSString *archiveName =
+    //     [NSString stringWithFormat:@"%@_%@_dumped.ipa", [appProxy localizedName], [appProxy shortVersionString]];
+    // NSString *archivePath =
+    //     [[[NSFileManager defaultManager] currentDirectoryPath] stringByAppendingPathComponent:archiveName];
+    // BOOL didClean = [[NSFileManager defaultManager] removeItemAtPath:archivePath error:nil];
     // assert(didClean);
-    int zipStatus =
-        my_system([[NSString stringWithFormat:@"set -e; shopt -s dotglob; cd '%@'; zip -r '%@' .; shopt -u dotglob;", escape_arg([tempURL path]), escape_arg(
-            archivePath)] UTF8String]);
+    // int zipStatus =
+    //     my_system([[NSString stringWithFormat:@"set -e; shopt -s dotglob; cd '%@'; zip -r '%@' .; shopt -u dotglob;", escape_arg([tempURL path]), escape_arg(
+    //         archivePath)] UTF8String]);
 
-    return zipStatus;
+    return 0;
 }

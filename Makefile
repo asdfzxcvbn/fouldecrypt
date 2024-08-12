@@ -1,5 +1,5 @@
 TARGET := iphone:clang:14.5:13.0
-ARCHS = arm64 arm64e
+ARCHS = arm64
 export ADDITIONAL_CFLAGS = -DTHEOS_LEAN_AND_MEAN -fobjc-arc
 
 include $(THEOS)/makefiles/common.mk
